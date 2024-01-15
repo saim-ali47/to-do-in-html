@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="light">
+    <div
+      class="bg-gradient-to-br from-blue-500 to-purple-500 w-full h-[100vh] py-[40px] bg-cover"
+    >
+      <div
+        class="bg-white w-[40%] h-auto py-[20px] m-auto text-black text-center"
+      >
+        <h1 class="text-center font-bold text-[24px]">To-Do List</h1>
+        <div class="py-[10px]">
+          <input
+            type="text"
+            id="to-do-list"
+            placeholder="Add your text"
+            class="border-[2px] border-gray-500 rounded-[25px] px-[12px] w-[60%] mx-[10px] py-[5px]"
+          />
+          <button
+            onClick="addtask()"
+            class="bg-red-500 text-white px-[15px] py-[7px] rounded-[50px] hover:bg-red-600"
+          >
+            Add
+          </button>
+        </div>
+        <div class="text-left w-[60%] mx-[15%]">
+          <ul id="list-cont" class=" text-black">
+          </ul>
+        </div>
+    <button class="border-[1px] px-[5px] border-black" onclick="toggleTheme() ">Toggle Theme</button>
+      </div>
+    </div>
+    <div>
+    </div>
+  </body>
+  <script>
+    const inputtext = document.getElementById("to-do-list");
+    const list = document.getElementById("list-cont");
+    function addtask() {
+      if (inputtext.value == "") {
+        alert("Pleade add a task");
+      } else {
+        let li = document.createElement("li");
+        li.innerHTML = inputtext.value;
+        list.appendChild(li);
+        console.log(li);
+        let span = document.createElement("span")
+        span.innerHTML = "x";
+        li.appendChild(span)
+      }
+      inputtext.value = "";
+    }
+    list.addEventListener("click", function(event){
+      if(event.target.tagName === "SPAN"){
+        event.target.parentElement.remove();
+      }
+    });
+
+    function toggleTheme() {
+            const body = document.body;
+
+            if (body.classList.contains('light')) {
+                body.classList.remove('light');
+                body.classList.add('dark');
+            } else {
+                body.classList.remove('dark');
+                body.classList.add('light');
+            }
+        }
+  </script>
+</html>
